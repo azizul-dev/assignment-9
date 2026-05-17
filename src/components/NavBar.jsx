@@ -3,6 +3,7 @@ import { Button } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import NavLink from "./NavLink";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -37,12 +38,12 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-2">
-          <Link href="/" className="hover:text-teal-500 transition">
+          <NavLink href="/" className="hover:text-teal-500 transition">
             Home
-          </Link>
-          <Link href="/pets" className="hover:text-teal-500 transition">
+          </NavLink>
+          <NavLink href="/pets" className="hover:text-teal-500 transition">
             All Pets
-          </Link>
+          </NavLink>
         </div>
         <div className="hidden md:flex gap-6 items-center">
           <Link href="/login">
@@ -61,12 +62,12 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden flex flex-col gap-4 mt-4 px-4 pb-4">
-          <Link href="/" className="hover:text-teal-500">
+          <NavLink href="/" className="hover:text-teal-500">
             Home
-          </Link>
-          <Link href="/pets" className="hover:text-teal-500">
+          </NavLink>
+          <NavLink href="/pets" className="hover:text-teal-500">
             All Pets
-          </Link>
+          </NavLink>
           <Link href="/login">
             <Button
               style={{ ...gradientStyle, width: "100%" }}
