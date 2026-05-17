@@ -5,21 +5,26 @@ import Link from "next/link";
 import { useState } from "react";
 import NavLink from "./NavLink";
 
+import { Dancing_Script } from "next/font/google";
+
+const dancing = Dancing_Script({
+  subsets: ["latin"],
+  weight: ["700"],
+});
+
 export default function Navbar() {
   const [open, setOpen] = useState(false);
 
-  const gradientStyle = {
-    background: "linear-gradient(135deg, #4A90A4, #5BB8D4, #A8E6CF)",
-    color: "white",
-    border: "none",
-  };
-
   return (
-    <nav className="shadow-md px-6 py-4">
+    <nav className="absolute top-0 left-0 w-full z-50 bg-transparent px-6 py-4 border-b border-white/20">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <div className=" flex items-center gap-2">
           {/* Logo */}
-          <div className="relative w-[60px] h-[60px] rounded-full bg-[linear-gradient(135deg,#4A90A4,#5BB8D4,#A8E6CF)] flex items-center justify-center">
+          <div
+            className="relative w-[60px] h-[60px] rounded-full 
+bg-white/10 backdrop-blur-lg border border-white/20
+flex items-center justify-center"
+          >
             <Image
               src="/images/logo.png"
               alt="logo"
@@ -30,7 +35,7 @@ export default function Navbar() {
           </div>
           <Link
             href="/"
-            className="text-2xl font-bold bg-[linear-gradient(135deg,#4A90A4,#5BB8D4,#A8E6CF)] bg-clip-text text-transparent"
+            className={`${dancing.className} text-4xl text-white/90`}
           >
             FurEver
           </Link>
@@ -38,16 +43,26 @@ export default function Navbar() {
 
         {/* Desktop Links */}
         <div className="hidden md:flex gap-2">
-          <NavLink href="/" className="hover:text-teal-500 transition">
+          <NavLink
+            href="/"
+            className="text-white hover:text-teal-300 transition"
+          >
             Home
           </NavLink>
-          <NavLink href="/pets" className="hover:text-teal-500 transition">
+          <NavLink
+            href="/pets"
+            className="text-white hover:text-teal-300 transition"
+          >
             All Pets
           </NavLink>
         </div>
         <div className="hidden md:flex gap-6 items-center">
           <Link href="/login">
-            <Button style={gradientStyle} className="px-6 font-semibold">
+            <Button
+              className="px-6 font-semibold text-white 
+  bg-white/10 backdrop-blur-lg 
+  border border-white/20 rounded-full"
+            >
               Login
             </Button>
           </Link>
@@ -62,16 +77,23 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="md:hidden flex flex-col gap-4 mt-4 px-4 pb-4">
-          <NavLink href="/" className="hover:text-teal-500">
+          <NavLink
+            href="/"
+            className="text-white hover:text-teal-300 transition"
+          >
             Home
           </NavLink>
-          <NavLink href="/pets" className="hover:text-teal-500">
+          <NavLink
+            href="/pets"
+            className="text-white hover:text-teal-300 transition"
+          >
             All Pets
           </NavLink>
           <Link href="/login">
             <Button
-              style={{ ...gradientStyle, width: "100%" }}
-              className="font-semibold"
+              className="px-6 font-semibold text-white 
+  bg-white/10 backdrop-blur-lg 
+  border border-white/20 rounded-full"
             >
               Login
             </Button>
