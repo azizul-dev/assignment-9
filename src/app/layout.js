@@ -19,7 +19,7 @@ export default function RootLayout({ children }) {
       data-theme="light"
       className={` h-full antialiased`}
     >
-      <body className={`${poppins.className} min-h-full flex flex-col`}>
+      <body className={`${poppins.className} min-h-screen`}>
         {children} 
         </body>
     </html>
