@@ -25,7 +25,7 @@ export default function DashboardLayout({ children }) {
     <div
       className="min-h-screen"
       style={{
-        backgroundImage: "url('/images/1.png')",
+        backgroundImage: "url('/images/4.png')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
@@ -61,7 +61,7 @@ export default function DashboardLayout({ children }) {
           className="fixed left-0 top-0 z-40 h-screen w-64 p-6 flex flex-col gap-3 transition-transform duration-300"
           style={{
             background: "rgba(255,255,255,0.12)",
-            backdropFilter: "blur(1px)",
+            backdropFilter: "blur(8px)",
             borderRight: "1px solid rgba(255,255,255,0.2)",
             transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)",
           }}
@@ -118,7 +118,7 @@ export default function DashboardLayout({ children }) {
           className="w-64 min-h-screen p-6 flex flex-col gap-3 sticky top-0 self-start"
           style={{
             background: "rgba(255,255,255,0.12)",
-            backdropFilter: "blur(1px)",
+            backdropFilter: "blur(8px)",
             borderRight: "1px solid rgba(255,255,255,0.2)",
           }}
         >

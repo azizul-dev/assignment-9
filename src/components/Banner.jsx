@@ -23,7 +23,7 @@ const slides = [
     link: "/pets",
   },
   {
-    image: "/images/3.png",
+    image: "/images/4.png",
     title: "A New Member Awaits",
     subtitle:
       "Make your family complete with a furry companion full of love.",

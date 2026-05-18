@@ -1,5 +1,6 @@
 import { Poppins} from "next/font/google";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 
 const poppins = Poppins({
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
     >
       <body className={`${poppins.className} min-h-screen`}>
         {children} 
+        <Toaster position="top" />
         </body>
     </html>
   );
