@@ -13,6 +13,8 @@ import {
   ListBox,
   TextArea,
 } from "@heroui/react";
+import { redirect } from "next/navigation";
+import toast from "react-hot-toast";
 
 import { CiEdit } from "react-icons/ci";
 
@@ -24,6 +26,20 @@ const EditModal = ({ pet }) => {
     const updatedPet = Object.fromEntries(formData.entries());
 
     console.log(updatedPet);
+    const res = await fetch(`http://localhost:8000/pet/${pet._id}`,{
+        method: 'PATCH',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(updatedPet)
+    })
+    const data = await res.json()
+
+
+    if (res.ok) {
+      toast.success("Pet updated successfully!");
+    }
+    redirect('/pets')
   };
 
   return (

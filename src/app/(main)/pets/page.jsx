@@ -276,7 +276,7 @@ const AllPets = async () => {
                   <FaArrowRight size={12} />
                 </Link>
 
-                {/* Eye */}
+             
                 <div
                   className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shrink-0"
                   style={{
