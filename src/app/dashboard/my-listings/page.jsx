@@ -9,6 +9,8 @@ import { MdVaccines } from "react-icons/md";
 import { GiHealthNormal } from "react-icons/gi";
 import EyeButton from "@/components/EyeButton";
 import EditModal from "@/components/EditModal";
+import { Button } from "@heroui/react";
+import DeleteCart from "@/components/DeleteCart";
 
 const MyListingPage = async () => {
   const res = await fetch("http://localhost:8000/pet", {
@@ -291,7 +293,7 @@ const MyListingPage = async () => {
 
                 <EditModal pet={pet}/>
                
-                <button
+                {/* <Button
                   className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition duration-300 hover:scale-110 shrink-0"
                   style={{
                     background: "rgba(239,68,68,0.15)",
@@ -299,7 +301,8 @@ const MyListingPage = async () => {
                   }}
                 >
                   <RiDeleteBin6Fill size={16} />
-                </button>
+                </Button> */}
+                <DeleteCart pet={pet}/>
               </div>
             </div>
           </div>

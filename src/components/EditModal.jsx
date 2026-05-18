@@ -26,25 +26,24 @@ const EditModal = ({ pet }) => {
     const updatedPet = Object.fromEntries(formData.entries());
 
     console.log(updatedPet);
-    const res = await fetch(`http://localhost:8000/pet/${pet._id}`,{
-        method: 'PATCH',
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(updatedPet)
-    })
-    const data = await res.json()
-
+    const res = await fetch(`http://localhost:8000/pet/${pet._id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(updatedPet),
+    });
+    const data = await res.json();
 
     if (res.ok) {
       toast.success("Pet updated successfully!");
+      redirect("/dashboard/my-listings");
     }
-    redirect('/pets')
+    
   };
 
   return (
     <Modal>
-     
       <Button
         className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition duration-300 hover:scale-110 shrink-0"
         style={{
@@ -55,7 +54,6 @@ const EditModal = ({ pet }) => {
         <CiEdit size={18} />
       </Button>
 
-     
       <Modal.Backdrop className="bg-black/70 backdrop-blur-sm">
         <Modal.Container placement="center">
           <Modal.Dialog
@@ -72,10 +70,8 @@ const EditModal = ({ pet }) => {
               shadow-2xl
             "
           >
-        
             <Modal.CloseTrigger className="text-white/60 hover:text-white" />
 
-           
             <Modal.Header className="px-6 md:px-10 pt-8 pb-2 border-b border-white/10">
               <div className="flex items-start gap-4">
                 <Modal.Icon className="bg-cyan-500/20 text-cyan-300 border border-cyan-400/20">
@@ -97,20 +93,14 @@ const EditModal = ({ pet }) => {
               </div>
             </Modal.Header>
 
-          
             <Modal.Body className="p-0 overflow-y-auto">
               <div className="pr-2">
                 <Surface
                   variant="default"
                   className="bg-transparent border-0 shadow-none"
                 >
-                  <form
-                    onSubmit={onSubmit}
-                    className="p-6 md:p-10 space-y-8"
-                  >
-                  
+                  <form onSubmit={onSubmit} className="p-6 md:p-10 space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-                    
                       <TextField
                         name="petName"
                         defaultValue={pet?.petName}
@@ -137,7 +127,6 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                
                       <div>
                         <Select
                           name="species"
@@ -190,11 +179,7 @@ const EditModal = ({ pet }) => {
                         </Select>
                       </div>
 
-                   
-                      <TextField
-                        name="breed"
-                        defaultValue={pet?.breed}
-                      >
+                      <TextField name="breed" defaultValue={pet?.breed}>
                         <Label className="text-sm font-medium text-white/70 mb-2 block">
                           Breed
                         </Label>
@@ -216,12 +201,7 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                    
-                      <TextField
-                        name="age"
-                        defaultValue={pet?.age}
-                        isRequired
-                      >
+                      <TextField name="age" defaultValue={pet?.age} isRequired>
                         <Label className="text-sm font-medium text-white/70 mb-2 block">
                           Age (years)
                         </Label>
@@ -244,7 +224,7 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                      {/* Gender */}
+
                       <div>
                         <Select
                           name="gender"
@@ -285,7 +265,6 @@ const EditModal = ({ pet }) => {
                         </Select>
                       </div>
 
-                 
                       <div>
                         <Select
                           name="vaccinationStatus"
@@ -335,7 +314,6 @@ const EditModal = ({ pet }) => {
                         </Select>
                       </div>
 
-                     
                       <div className="md:col-span-2">
                         <TextField
                           name="imageUrl"
@@ -365,7 +343,6 @@ const EditModal = ({ pet }) => {
                         </TextField>
                       </div>
 
-                    
                       <div>
                         <Select
                           name="healthStatus"
@@ -416,7 +393,6 @@ const EditModal = ({ pet }) => {
                         </Select>
                       </div>
 
-                     
                       <TextField
                         name="location"
                         defaultValue={pet?.location}
@@ -443,7 +419,6 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                     
                       <TextField
                         name="adoptionFee"
                         defaultValue={pet?.adoptionFee}
@@ -470,7 +445,6 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                    
                       <TextField
                         name="ownerEmail"
                         defaultValue={pet?.ownerEmail}
@@ -498,7 +472,6 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                     
                       <div className="md:col-span-2">
                         <TextField
                           name="description"
@@ -528,7 +501,6 @@ const EditModal = ({ pet }) => {
                       </div>
                     </div>
 
-               
                     <div className="flex flex-col sm:flex-row gap-4 pt-4">
                       <Button
                         type="button"

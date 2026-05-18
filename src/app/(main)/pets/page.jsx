@@ -1,17 +1,13 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { RiDeleteBin6Fill } from "react-icons/ri";
-import { CiEdit } from "react-icons/ci";
 import { FaMapMarkerAlt, FaArrowRight, FaHeart } from "react-icons/fa";
 import { MdVaccines } from "react-icons/md";
 import { GiHealthNormal } from "react-icons/gi";
 import EyeButton from "@/components/EyeButton";
 
 const AllPets = async () => {
-  const res = await fetch("http://localhost:8000/pet", {
-    
-  });
+  const res = await fetch("http://localhost:8000/pet", {});
 
   const pets = await res.json();
 
@@ -25,75 +21,25 @@ const AllPets = async () => {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Overlay */}
       <div className="fixed inset-0 bg-black/65 -z-10"></div>
 
-      {/* Blur */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-400/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-emerald-400/10 blur-3xl rounded-full"></div>
 
-      {/* Header */}
       <div className="text-center mb-12">
         <p className="uppercase tracking-[6px] text-[#A8E6CF] text-xs mb-3">
-          My Dashboard
+          Pet Adoption Platform
         </p>
 
         <h1 className="text-4xl md:text-5xl font-black text-white mb-3">
-          My Listings
+          All Pets
         </h1>
 
         <p className="text-white/60 max-w-2xl mx-auto text-sm">
-          Manage your pet listings and adoption requests easily.
+          Explore adorable pets looking for a loving and caring home.
         </p>
       </div>
 
-      {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto mb-12">
-        <div
-          className="rounded-3xl p-6 text-center"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            backdropFilter: "blur(14px)",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          <h2 className="text-4xl font-black text-[#A8E6CF] mb-1">
-            {pets.length}
-          </h2>
-
-          <p className="text-white/70">Total Listings</p>
-        </div>
-
-        <div
-          className="rounded-3xl p-6 text-center"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            backdropFilter: "blur(14px)",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          <h2 className="text-4xl font-black text-emerald-400 mb-1">
-            {pets.length}
-          </h2>
-
-          <p className="text-white/70">Available</p>
-        </div>
-
-        <div
-          className="rounded-3xl p-6 text-center"
-          style={{
-            background: "rgba(255,255,255,0.06)",
-            backdropFilter: "blur(14px)",
-            border: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          <h2 className="text-4xl font-black text-pink-400 mb-1">0</h2>
-
-          <p className="text-white/70">Adopted</p>
-        </div>
-      </div>
-
-      {/* Cards */}
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {pets.map((pet) => (
           <div
@@ -106,7 +52,6 @@ const AllPets = async () => {
               boxShadow: "0 10px 35px rgba(0,0,0,0.22)",
             }}
           >
-            {/* Hover Border */}
             <div
               className="absolute inset-0 rounded-[28px] opacity-0 group-hover:opacity-100 transition duration-500 pointer-events-none"
               style={{
@@ -120,7 +65,6 @@ const AllPets = async () => {
               }}
             ></div>
 
-            {/* Image */}
             <div className="relative h-[400px] overflow-hidden">
               <Image
                 src={pet.imageUrl}
@@ -130,10 +74,8 @@ const AllPets = async () => {
                 className="  object-cover object-top transition duration-700 group-hover:scale-105 "
               />
 
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-              {/* Species */}
               <div
                 className="absolute top-3 left-3 px-3 py-1 rounded-full text-white text-[11px] font-bold"
                 style={{
@@ -144,7 +86,6 @@ const AllPets = async () => {
                 {pet.species}
               </div>
 
-              {/* Gender */}
               <div
                 className="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-[11px] font-bold"
                 style={{
@@ -157,7 +98,6 @@ const AllPets = async () => {
                 {pet.gender}
               </div>
 
-              {/* Heart */}
               <button
                 className="absolute bottom-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-white transition hover:scale-110"
                 style={{
@@ -168,7 +108,6 @@ const AllPets = async () => {
                 <FaHeart size={14} />
               </button>
 
-              {/* Bottom Text */}
               <div className="absolute bottom-4 left-4">
                 <h2 className="text-2xl font-black text-white mb-1">
                   {pet.petName}
@@ -180,9 +119,7 @@ const AllPets = async () => {
               </div>
             </div>
 
-            {/* Content */}
             <div className="p-4">
-              {/* Fee */}
               <div className="flex items-center justify-between mb-4">
                 <div>
                   <p className="text-white/50 text-[11px] mb-1">Adoption Fee</p>
@@ -203,7 +140,6 @@ const AllPets = async () => {
                 </div>
               </div>
 
-              {/* Info */}
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div
                   className="rounded-2xl p-3"
@@ -257,14 +193,11 @@ const AllPets = async () => {
                 </div>
               </div>
 
-              {/* Description */}
               <p className="text-white/60 text-xs leading-6 mb-4 line-clamp-2 min-h-[48px]">
                 {pet.description}
               </p>
 
-              {/* Buttons */}
               <div className="flex items-center gap-2">
-                {/* Request */}
                 <Link
                   href={`/pets/${pet._id}`}
                   className="flex-1 h-10 px-3 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition duration-300 hover:scale-[1.02] whitespace-nowrap"
@@ -276,7 +209,6 @@ const AllPets = async () => {
                   <FaArrowRight size={12} />
                 </Link>
 
-             
                 <div
                   className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shrink-0"
                   style={{
@@ -286,9 +218,6 @@ const AllPets = async () => {
                 >
                   <EyeButton href={`/pets/${pet._id}`} />
                 </div>
-
-               
-              
               </div>
             </div>
           </div>

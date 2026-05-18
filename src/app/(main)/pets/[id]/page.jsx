@@ -12,7 +12,7 @@ import { IoMaleFemale } from "react-icons/io5";
 const PetDetailPage = async ({ params }) => {
   const { id }  = await params;
 
-  // Fetch Single Pet
+
   const res = await fetch(`http://localhost:8000/pet/${id}`, {
     cache: "no-store",
   });
@@ -29,10 +29,10 @@ const PetDetailPage = async ({ params }) => {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Overlay */}
+
       <div className="fixed inset-0 bg-black/60 -z-10"></div>
 
-      {/* Decorative Shapes */}
+
       <div className="absolute top-16 right-10 w-56 h-56 rounded-full border-[18px] border-[#8B5E3C]/20"></div>
       <div className="absolute bottom-10 left-10 w-40 h-40 rounded-full border-[14px] border-[#A8E6CF]/20"></div>
 
@@ -45,7 +45,7 @@ const PetDetailPage = async ({ params }) => {
         }}
       >
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          {/* LEFT IMAGE */}
+
           <div className="relative h-[400px] lg:h-auto min-h-[700px]">
             <Image
               src={pet.imageUrl}
@@ -54,10 +54,10 @@ const PetDetailPage = async ({ params }) => {
               className="object-cover"
             />
 
-            {/* Gradient */}
+
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
-            {/* Species */}
+
             <div
               className="absolute top-6 left-6 px-4 py-2 rounded-full text-white text-sm font-semibold"
               style={{
@@ -68,7 +68,7 @@ const PetDetailPage = async ({ params }) => {
               {pet.species}
             </div>
 
-            {/* Gender */}
+
             <div
               className="absolute top-6 right-6 px-4 py-2 rounded-full text-white text-sm font-semibold"
               style={{
@@ -81,7 +81,7 @@ const PetDetailPage = async ({ params }) => {
               {pet.gender}
             </div>
 
-            {/* Bottom Text */}
+
             <div className="absolute bottom-8 left-8">
               <p className="text-[#A8E6CF] uppercase tracking-[4px] text-sm mb-2">
                 Forever Friend
@@ -97,10 +97,10 @@ const PetDetailPage = async ({ params }) => {
             </div>
           </div>
 
-          {/* RIGHT CONTENT */}
+
           <div className="p-6 md:p-10 flex flex-col justify-between">
             <div>
-              {/* Price */}
+
               <div className="flex justify-between items-start mb-8">
                 <div>
                   <p className="text-white/60 text-sm mb-2">
@@ -123,9 +123,9 @@ const PetDetailPage = async ({ params }) => {
                 </div>
               </div>
 
-              {/* INFO GRID */}
+
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                {/* Location */}
+
                 <div
                   className="rounded-2xl p-5"
                   style={{
@@ -145,7 +145,7 @@ const PetDetailPage = async ({ params }) => {
                   </p>
                 </div>
 
-                {/* Age */}
+
                 <div
                   className="rounded-2xl p-5"
                   style={{
@@ -165,7 +165,7 @@ const PetDetailPage = async ({ params }) => {
                   </p>
                 </div>
 
-                {/* Health */}
+
                 <div
                   className="rounded-2xl p-5"
                   style={{
@@ -185,7 +185,7 @@ const PetDetailPage = async ({ params }) => {
                   </p>
                 </div>
 
-                {/* Vaccination */}
+
                 <div
                   className="rounded-2xl p-5"
                   style={{
@@ -206,7 +206,7 @@ const PetDetailPage = async ({ params }) => {
                 </div>
               </div>
 
-              {/* DESCRIPTION */}
+
               <div
                 className="rounded-3xl p-6 mb-8"
                 style={{
@@ -223,7 +223,7 @@ const PetDetailPage = async ({ params }) => {
                 </p>
               </div>
 
-              {/* Owner */}
+
               <div
                 className="rounded-2xl p-5 mb-8"
                 style={{
@@ -241,9 +241,9 @@ const PetDetailPage = async ({ params }) => {
               </div>
             </div>
 
-            {/* BUTTONS */}
+
             <div className="flex flex-col md:flex-row gap-4">
-              {/* Adopt */}
+
               <button
                 className="flex-1 py-4 rounded-2xl text-white text-lg font-bold transition duration-300 hover:scale-[1.02]"
                 style={{
@@ -254,7 +254,7 @@ const PetDetailPage = async ({ params }) => {
                 Adopt Now
               </button>
 
-              {/* Back */}
+
               <Link
                 href="/pets"
                 className="flex items-center justify-center gap-2 flex-1 py-4 rounded-2xl text-white text-lg font-bold transition duration-300 hover:scale-[1.02]"
