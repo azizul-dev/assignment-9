@@ -60,8 +60,8 @@ export default function DashboardLayout({ children }) {
         <aside
           className="fixed left-0 top-0 z-40 h-screen w-64 p-6 flex flex-col gap-3 transition-transform duration-300"
           style={{
-            background: "rgba(30,30,30,0.85)",
-            backdropFilter: "blur(12px)",
+            background: "rgba(255,255,255,0.12)",
+            backdropFilter: "blur(1px)",
             borderRight: "1px solid rgba(255,255,255,0.2)",
             transform: sidebarOpen ? "translateX(0)" : "translateX(-100%)",
           }}
@@ -77,7 +77,7 @@ export default function DashboardLayout({ children }) {
             <span className={`${dancing.className} text-2xl text-white`}>FurEver</span>
           </Link>
 
-          <h2 className="text-white/70 text-xs uppercase tracking-widest mb-2">Menu</h2>
+         <Link href={'/dashboard'}><h2 className="text-white/70 text-xs uppercase tracking-widest mb-2 cursor-pointer">Menu</h2></Link>
 
           {links.map((link) => (
             <Link
@@ -129,7 +129,7 @@ export default function DashboardLayout({ children }) {
             <span className={`${dancing.className} text-2xl text-white`}>FurEver</span>
           </Link>
 
-          <h2 className="text-white/70 text-xs uppercase tracking-widest mb-2">Menu</h2>
+         <Link href={'/dashboard'}><h2 className="text-white/70 text-xs uppercase tracking-widest mb-2 cursor-pointer">Menu</h2></Link>
 
           {links.map((link) => (
             <Link
