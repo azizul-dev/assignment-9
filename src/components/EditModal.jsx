@@ -201,7 +201,7 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                      <TextField name="age" defaultValue={pet?.age} isRequired>
+                      <TextField name="age" defaultValue={String(pet?.age ?? "")} isRequired>
                         <Label className="text-sm font-medium text-white/70 mb-2 block">
                           Age (years)
                         </Label>
@@ -419,10 +419,7 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                      <TextField
-                        name="adoptionFee"
-                        defaultValue={pet?.adoptionFee}
-                      >
+                     <TextField name="adoptionFee" defaultValue={String(pet?.adoptionFee ?? "")}>
                         <Label className="text-sm font-medium text-white/70 mb-2 block">
                           Adoption Fee
                         </Label>

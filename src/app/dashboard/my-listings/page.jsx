@@ -101,6 +101,7 @@ const MyListingPage = async () => {
     
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
         {pets.map((pet) => (
+          
           <div
             key={pet._id}
             className="group relative rounded-[28px] overflow-hidden transition-all duration-500 hover:-translate-y-2"
@@ -266,9 +267,10 @@ const MyListingPage = async () => {
               </p>
 
             
-              <div className="flex items-center gap-2">
+              <div className="flex  items-center gap-4">
 
-                <RequestPet pet={pet}/>
+                
+                  <RequestPet petId={pet._id} petName={pet.petName} />
                
                 {/* <Link
                   href={`/pets/${pet._id}`}
