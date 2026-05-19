@@ -11,6 +11,7 @@ import EyeButton from "@/components/EyeButton";
 import EditModal from "@/components/EditModal";
 import { Button } from "@heroui/react";
 import DeleteCart from "@/components/DeleteCart";
+import RequestPet from "@/components/RequestPet";
 
 const MyListingPage = async () => {
   const res = await fetch("http://localhost:8000/pet", {
@@ -266,8 +267,10 @@ const MyListingPage = async () => {
 
             
               <div className="flex items-center gap-2">
+
+                <RequestPet pet={pet}/>
                
-                <Link
+                {/* <Link
                   href={`/pets/${pet._id}`}
                   className="flex-1 h-10 px-3 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition duration-300 hover:scale-[1.02] whitespace-nowrap"
                   style={{
@@ -276,7 +279,7 @@ const MyListingPage = async () => {
                 >
                   Requests
                   <FaArrowRight size={12} />
-                </Link>
+                </Link> */}
 
               
                 <div
