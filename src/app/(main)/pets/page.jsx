@@ -205,7 +205,7 @@ const AllPets = async () => {
                     background: "linear-gradient(90deg,#4A90A4,#A8E6CF)",
                   }}
                 >
-                  Requests
+                 Adopt Now
                   <FaArrowRight size={12} />
                 </Link>
 

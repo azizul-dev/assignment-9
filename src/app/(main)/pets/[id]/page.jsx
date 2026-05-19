@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import { MdVaccines } from "react-icons/md";
 import { IoMaleFemale } from "react-icons/io5";
+import AdoptPet from "@/components/AdoptPet";
 
 const PetDetailPage = async ({ params }) => {
   const { id }  = await params;
@@ -46,7 +47,7 @@ const PetDetailPage = async ({ params }) => {
       >
         <div className="grid grid-cols-1 lg:grid-cols-2">
 
-          <div className="relative h-[400px] lg:h-auto min-h-[700px]">
+          <div className="relative h-[100px] lg:h-auto min-h-[300px]">
             <Image
               src={pet.imageUrl}
               alt={pet.petName}
@@ -244,7 +245,7 @@ const PetDetailPage = async ({ params }) => {
 
             <div className="flex flex-col md:flex-row gap-4">
 
-              <button
+              {/* <button
                 className="flex-1 py-4 rounded-2xl text-white text-lg font-bold transition duration-300 hover:scale-[1.02]"
                 style={{
                   background:
@@ -252,7 +253,8 @@ const PetDetailPage = async ({ params }) => {
                 }}
               >
                 Adopt Now
-              </button>
+              </button> */}
+              
 
 
               <Link
@@ -267,6 +269,7 @@ const PetDetailPage = async ({ params }) => {
                 Back To Pets
               </Link>
             </div>
+            <AdoptPet pet={pet}/>
           </div>
         </div>
       </div>
