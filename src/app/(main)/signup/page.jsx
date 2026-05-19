@@ -64,7 +64,7 @@ const SignUpPage = () => {
         items-start
         justify-center
         px-4
-        pt-28
+        pt-35
         pb-6
       "
       style={{
@@ -118,11 +118,11 @@ const SignUpPage = () => {
             </Label>
 
             <Input
-              placeholder="John Doe"
+              placeholder="Your Name"
               className="
                 w-full
                 px-2
-                py-1
+                py-3
                 rounded-xl
                 text-white
                 placeholder-white/40

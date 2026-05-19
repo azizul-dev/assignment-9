@@ -26,7 +26,7 @@ const LoginPage = () => {
 
     if (data) {
       toast.success("Login Successful");
-      redirect.push("/");
+      redirect("/");
     }
     if (error) {
       toast.error("Login Failed");
@@ -101,7 +101,7 @@ const LoginPage = () => {
          
           <button
             type="submit"
-            className="w-full py-3 rounded-xl font-semibold text-white transition hover:opacity-90 mt-2"
+            className=" cursor-pointer w-full py-3 rounded-xl font-semibold text-white transition hover:opacity-90 mt-2"
             style={{ background: "linear-gradient(135deg, #4A90A4, #A8E6CF)" }}
           >
             Login

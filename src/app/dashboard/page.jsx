@@ -8,7 +8,7 @@ export default function DashboardPage() {
         Welcome to Dashboard
       </h1>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 w-full p-4">
         <Link
           href="/dashboard/my-requests"
           className="p-5 md:p-6 rounded-xl transition-all duration-300 hover:scale-105"
