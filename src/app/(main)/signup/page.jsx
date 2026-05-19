@@ -1,13 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
-import {
-  Form,
-  Input,
-  TextField,
-  Label,
-  FieldError,
-} from "@heroui/react";
+import { Form, Input, TextField, Label, FieldError } from "@heroui/react";
 import { redirect } from "next/navigation";
 import toast from "react-hot-toast";
 import { useState } from "react";
@@ -56,6 +50,12 @@ const SignUpPage = () => {
     }
   };
 
+  const handleGoogleSignin = async () =>{
+    await authClient.signIn.social({
+      provider: "google"
+    })
+  }
+
   return (
     <div
       className="
@@ -103,15 +103,10 @@ const SignUpPage = () => {
             FurEver
           </span>
 
-          <p className="text-white/60 text-sm mt-1">
-            Create your account
-          </p>
+          <p className="text-white/60 text-sm mt-1">Create your account</p>
         </div>
 
-        <Form
-          onSubmit={onSubmit}
-          className="flex flex-col gap-3"
-        >
+        <Form onSubmit={onSubmit} className="flex flex-col gap-3">
           <TextField isRequired name="name">
             <Label className="text-white/80 text-sm mb-1 block">
               Full Name
@@ -142,20 +137,14 @@ const SignUpPage = () => {
             name="email"
             type="email"
             validate={(value) => {
-              if (
-                !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-                  value
-                )
-              ) {
+              if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
                 return "Please enter a valid email address";
               }
 
               return null;
             }}
           >
-            <Label className="text-white/80 text-sm mb-1 block">
-              Email
-            </Label>
+            <Label className="text-white/80 text-sm mb-1 block">Email</Label>
 
             <Input
               placeholder="Enter Your Email"
@@ -222,9 +211,7 @@ const SignUpPage = () => {
               return null;
             }}
           >
-            <Label className="text-white/80 text-sm mb-1 block">
-              Password
-            </Label>
+            <Label className="text-white/80 text-sm mb-1 block">Password</Label>
 
             <div className="relative">
               <Input
@@ -247,9 +234,7 @@ const SignUpPage = () => {
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowPassword(!showPassword)
-                }
+                onClick={() => setShowPassword(!showPassword)}
                 className="
                   absolute
                   right-3
@@ -271,9 +256,7 @@ const SignUpPage = () => {
           </TextField>
 
           <div className="flex flex-col gap-1">
-            <label className="text-white/80 text-sm">
-              Confirm Password
-            </label>
+            <label className="text-white/80 text-sm">Confirm Password</label>
 
             <div className="relative">
               <input
@@ -299,9 +282,7 @@ const SignUpPage = () => {
 
               <button
                 type="button"
-                onClick={() =>
-                  setShowConfirm(!showConfirm)
-                }
+                onClick={() => setShowConfirm(!showConfirm)}
                 className="
                   absolute
                   right-3
@@ -320,9 +301,7 @@ const SignUpPage = () => {
             </div>
 
             {confirmError && (
-              <p className="text-red-400 text-xs">
-                {confirmError}
-              </p>
+              <p className="text-red-400 text-xs">{confirmError}</p>
             )}
           </div>
 
@@ -339,8 +318,7 @@ const SignUpPage = () => {
               mt-2
             "
             style={{
-              background:
-                "linear-gradient(135deg, #4A90A4, #A8E6CF)",
+              background: "linear-gradient(135deg, #4A90A4, #A8E6CF)",
             }}
           >
             Create Account
@@ -348,14 +326,52 @@ const SignUpPage = () => {
 
           <p className="text-center text-white/60 text-sm">
             Already have an account?{" "}
-            <Link
-              href="/login"
-              className="text-teal-300 hover:underline"
-            >
+            <Link href="/login" className="text-teal-300 hover:underline">
               Login
             </Link>
           </p>
         </Form>
+        <div className="flex items-center gap-3 my-2">
+          <div className="flex-1 h-px bg-white/20" />
+          <span className="text-white/50 text-sm">OR</span>
+          <div className="flex-1 h-px bg-white/20" />
+        </div>
+
+        <button onClick={handleGoogleSignin}
+          type="button"
+          className="w-full flex items-center justify-center gap-3 py-2.5 rounded-xl text-white font-medium transition hover:bg-white/15 cursor-pointer"
+          style={{
+            background: "rgba(255,255,255,0.08)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            backdropFilter: "blur(10px)",
+          }}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 48 48"
+            width="22"
+            height="22"
+          >
+            <path
+              fill="#FFC107"
+              d="M43.6 20.5H42V20H24v8h11.3C33.6 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.3-.4-3.5z"
+            />
+            <path
+              fill="#FF3D00"
+              d="M6.3 14.7l6.6 4.8C14.7 16 19 12 24 12c3 0 5.7 1.1 7.8 3l5.7-5.7C34.1 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"
+            />
+            <path
+              fill="#4CAF50"
+              d="M24 44c5.2 0 10-2 13.5-5.3l-6.2-5.2C29.3 35.1 26.8 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.5 16.2 44 24 44z"
+            />
+            <path
+              fill="#1976D2"
+              d="M43.6 20.5H42V20H24v8h11.3c-1.1 3-3.4 5.4-6.5 6.9l6.2 5.2C39.7 36.2 44 30.7 44 24c0-1.3-.1-2.3-.4-3.5z"
+            />
+          </svg>
+
+          <span>Continue with Google</span>
+        </button>
       </div>
     </div>
   );

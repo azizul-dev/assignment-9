@@ -31,19 +31,21 @@ const NavBar = () => {
     router.refresh();
   };
 
-  
   const desktopAuth = isPending ? (
     <div className="w-8 h-8 rounded-full bg-white/20 animate-pulse" />
   ) : user ? (
     <div className="flex items-center gap-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-full px-3 py-1.5">
-      <Avatar
-        src={
-          user?.image || "https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-        }
-        name={user?.name || "User"}
-        size="sm"
-        className="cursor-pointer"
-      />
+     <Avatar>
+          <Avatar.Image
+            referrerPolicy="no-referrer"
+            alt="John Doe"
+            src={
+              user?.image ||
+              "https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
+            }
+          />
+          <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
+        </Avatar>
       <span className="text-white/90 text-sm font-medium hidden lg:block">
         {user?.name}
       </span>
@@ -70,18 +72,20 @@ const NavBar = () => {
     </Link>
   );
 
-  
   const mobileAuth = user ? (
     <div className="flex flex-col gap-3 pt-2 border-t border-white/10">
       <div className="flex items-center gap-3">
-        <Avatar
-          src={
-            user?.image ||
-            "https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
-          }
-          name={user?.name || "User"}
-          size="sm"
-        />
+        <Avatar>
+          <Avatar.Image
+            referrerPolicy="no-referrer"
+            alt="John Doe"
+            src={
+              user?.image ||
+              "https://img.heroui.chat/image/avatar?w=400&h=400&u=3"
+            }
+          />
+          <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
+        </Avatar>
         <span className="text-white/90 text-sm font-medium">{user?.name}</span>
       </div>
       <NavLink
@@ -109,7 +113,6 @@ const NavBar = () => {
   return (
     <nav className="absolute top-0 left-0 w-full z-50 bg-transparent px-3 md:px-6 py-3 md:py-4 border-b border-white/10">
       <div className="max-w-7xl mx-auto flex justify-between items-center">
-       
         <div className="flex items-center gap-2">
           <div className="relative w-[45px] h-[45px] md:w-[60px] md:h-[60px] rounded-full bg-white/10 backdrop-blur-lg border border-white/20 flex items-center justify-center">
             <Image
@@ -128,7 +131,6 @@ const NavBar = () => {
           </Link>
         </div>
 
-       
         <div className="hidden md:flex gap-3 items-center">
           <NavLink
             href="/"
@@ -142,15 +144,12 @@ const NavBar = () => {
             className="flex items-center gap-2 text-white hover:text-teal-300 transition"
           >
             <MdPets className=" text-lg" />
-
             All Pets
           </NavLink>
         </div>
 
-       
         <div className="hidden md:flex items-center">{desktopAuth}</div>
 
-     
         <button
           onClick={() => setOpen(!open)}
           className="md:hidden text-3xl text-white"
@@ -159,7 +158,6 @@ const NavBar = () => {
         </button>
       </div>
 
-     
       {open && (
         <div className="md:hidden flex flex-col gap-4 mt-4 px-4 py-4 rounded-2xl bg-white/10 backdrop-blur-lg border border-white/20">
           <NavLink
@@ -169,12 +167,11 @@ const NavBar = () => {
             <SiHomebridge className="text-lg" />
             <span>Home</span>
           </NavLink>
-         <NavLink
+          <NavLink
             href="/pets"
             className="flex items-center gap-2 text-white hover:text-teal-300 transition"
           >
             <MdPets className=" text-lg" />
-
             All Pets
           </NavLink>
           {mobileAuth}
