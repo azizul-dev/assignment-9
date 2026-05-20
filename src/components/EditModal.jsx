@@ -29,7 +29,7 @@ const EditModal = ({ pet }) => {
     console.log(updatedPet);
     const { data: tokenData } = await authClient.token();
 
-    const res = await fetch(`http://localhost:8000/pet/${pet._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${pet._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",

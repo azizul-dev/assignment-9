@@ -1,4 +1,4 @@
-import React from "react";
+export const dynamic = "force-dynamic";
 import Image from "next/image";
 
 import { FaMapMarkerAlt, FaArrowRight, FaHeart } from "react-icons/fa";
@@ -9,16 +9,27 @@ import EditModal from "@/components/EditModal";
 
 import DeleteCart from "@/components/DeleteCart";
 import RequestPet from "@/components/RequestPet";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
 
 const MyListingPage = async () => {
-  const res = await fetch("http://localhost:8000/pet", {});
+  const { token } = await auth.api.getToken({
+    headers: await headers(),
+  });
+  console.log("TOKEN:", token);
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`, {
+    headers: {
+      authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) throw new Error(`API error: ${res.status}`);
 
   const pets = await res.json();
+  
 
-  // Available pets count
   const availablePets = pets.filter((pet) => pet.status !== "adopted");
 
-  // Adopted pets count
   const adoptedPets = pets.filter((pet) => pet.status === "adopted");
 
   return (
@@ -75,7 +86,7 @@ const MyListingPage = async () => {
           }}
         >
           <h2 className="text-4xl font-black text-emerald-400 mb-1">
-             {availablePets.length}
+            {availablePets.length}
           </h2>
 
           <p className="text-white/70">Available</p>

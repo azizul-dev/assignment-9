@@ -20,7 +20,7 @@ const PetDetailPage = async ({ params }) => {
   })
 
 
-  const res = await fetch(`http://localhost:8000/pet/${id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${id}`, {
     headers: {
       authorization: `Bearer ${token}`
     }

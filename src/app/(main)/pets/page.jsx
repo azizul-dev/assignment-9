@@ -2,10 +2,10 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+
 import {
   FaMapMarkerAlt,
-  FaArrowRight,
+
   FaHeart,
   FaSearch,
 } from "react-icons/fa";
@@ -23,8 +23,13 @@ const AllPets = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+       const {data:tokenData} = await authClient.token()
       try {
-        const petRes = await fetch("http://localhost:8000/pet");
+        const petRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`,{
+          headers: {
+             authorization: `Bearer ${tokenData?.token}`
+          }
+        });
         const petData = await petRes.json();
 
         setPets(petData);
@@ -38,7 +43,7 @@ const AllPets = () => {
           const { data: tokenData } = await authClient.token();
 
           const requestRes = await fetch(
-            `http://localhost:8000/adopting/${userId}`,
+            `${process.env.NEXT_PUBLIC_API_URL}/adopting/${userId}`,
             {
               headers: {
                 authorization: `Bearer ${tokenData?.token}`,

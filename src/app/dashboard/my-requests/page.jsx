@@ -15,7 +15,7 @@ const MyRequestsPage = async () => {
     headers: await headers(),
   });
 
-  const res = await fetch(`http://localhost:8000/adopting/${user?.id}`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adopting/${user?.id}`, {
     headers: {
       authorization: `Bearer ${token}`,
     },

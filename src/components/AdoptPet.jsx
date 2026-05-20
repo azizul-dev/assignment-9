@@ -54,7 +54,7 @@ const AdoptPet = ({ pet }) => {
     const {data:tokenData} = await authClient.token()
 
     try {
-      const res = await fetch("http://localhost:8000/adopting", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/adopting`, {
         method: "POST",
         headers: {
           "content-type": "application/json",

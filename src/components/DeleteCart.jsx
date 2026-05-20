@@ -11,7 +11,7 @@ const DeleteCart = ({ pet }) => {
   const handleDelete = async () => {
     const {data:tokenData} = await authClient.token()
     
-    const res = await fetch(`http://localhost:8000/pet/${pet._id}`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet/${pet._id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
