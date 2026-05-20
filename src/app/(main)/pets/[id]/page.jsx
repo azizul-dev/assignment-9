@@ -15,7 +15,9 @@ const PetDetailPage = async ({ params }) => {
 
 
   const res = await fetch(`http://localhost:8000/pet/${id}`, {
-    cache: "no-store",
+    headers: {
+      authorization: "logged in"
+    }
   });
 
   const pet = await res.json();
