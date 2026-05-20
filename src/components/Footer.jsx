@@ -15,7 +15,7 @@ import { FaPaw, FaClock } from "react-icons/fa";
 
 const Footer = () => {
   return (
-    <footer className="relative mt-24 overflow-hidden">
+    <footer className="relative  overflow-hidden">
    
       <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
         <svg
@@ -32,7 +32,7 @@ const Footer = () => {
       </div>
 
     
-      <div className="bg-[#1a1612] text-white pt-28 pb-8 px-6 lg:px-16 rounded-t-[10px] relative z-10">
+      <div className="bg-[#1a1612] text-white pt-28 pb-8 px-6 lg:px-16  relative z-10">
      
         <div className="absolute top-10 right-10 opacity-10 text-[180px] text-[#c08b5c]">
           <FaPaw />

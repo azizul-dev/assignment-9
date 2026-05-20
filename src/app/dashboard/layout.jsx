@@ -49,6 +49,11 @@ export default function DashboardLayout({ children }) {
       label: "My Listings",
       icon: <RiFileListLine size={18} />,
     },
+    {
+      href: "/dashboard/request",
+      label: "Requested",
+      icon: <RiFileListLine size={18} />,
+    },
   ];
   return (
     <div

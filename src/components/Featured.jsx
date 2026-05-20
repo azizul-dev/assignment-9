@@ -27,17 +27,13 @@ const Featured = async () => {
         backgroundAttachment: "fixed",
       }}
     >
-      
       <div className="absolute inset-0 bg-[#140d08]/85"></div>
 
-    
       <div className="absolute top-0 left-0 w-96 h-96 bg-orange-500/10 blur-3xl rounded-full"></div>
 
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-amber-400/10 blur-3xl rounded-full"></div>
 
-      
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-6">
-     
         <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-14">
           <div>
             <p className="uppercase tracking-[6px] text-[#A8E6CF] text-xs mb-4">
@@ -61,7 +57,6 @@ const Featured = async () => {
           </Link>
         </div>
 
-        
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {featuredPet.map((pet) => (
             <div
@@ -74,7 +69,6 @@ const Featured = async () => {
                 boxShadow: "0 10px 40px rgba(0,0,0,0.30)",
               }}
             >
-             
               <div className="relative h-[420px] overflow-hidden">
                 <Image
                   src={pet.imageUrl}
@@ -85,7 +79,6 @@ const Featured = async () => {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
 
-            
                 <div
                   className="absolute top-4 left-4 px-4 py-1 rounded-full text-white text-xs font-bold"
                   style={{
@@ -96,7 +89,6 @@ const Featured = async () => {
                   {pet.species}
                 </div>
 
-          
                 <div
                   className="absolute top-4 right-4 px-4 py-1 rounded-full text-white text-xs font-bold"
                   style={{
@@ -106,7 +98,6 @@ const Featured = async () => {
                   {pet.gender}
                 </div>
 
-            
                 <button
                   className="absolute bottom-5 right-5 w-12 h-12 rounded-full flex items-center justify-center text-white hover:scale-110 transition-all duration-300"
                   style={{
@@ -117,7 +108,6 @@ const Featured = async () => {
                   <FaHeart />
                 </button>
 
-              
                 <div className="absolute bottom-6 left-6">
                   <h2 className="text-4xl font-black text-white mb-2">
                     {pet.petName}
@@ -129,9 +119,7 @@ const Featured = async () => {
                 </div>
               </div>
 
-            
               <div className="p-5">
-            
                 <div className="flex items-center justify-between mb-5">
                   <div>
                     <p className="text-white/40 text-xs mb-1">Adoption Fee</p>
@@ -152,9 +140,7 @@ const Featured = async () => {
                   </div>
                 </div>
 
-               
                 <div className="grid grid-cols-2 gap-4 mb-5">
-                
                   <div
                     className="rounded-3xl p-4"
                     style={{
@@ -172,7 +158,6 @@ const Featured = async () => {
                     </p>
                   </div>
 
-                
                   <div
                     className="rounded-3xl p-4"
                     style={{
@@ -190,7 +175,6 @@ const Featured = async () => {
                     </p>
                   </div>
 
-                
                   <div
                     className="rounded-3xl p-4 col-span-2"
                     style={{
@@ -209,7 +193,6 @@ const Featured = async () => {
                   </div>
                 </div>
 
-             
                 <p className="text-white/60 text-sm leading-7 mb-6 line-clamp-2 min-h-[56px]">
                   {pet.description}
                 </p>
@@ -225,17 +208,15 @@ const Featured = async () => {
                     <EyeButton href={`/pets/${pet._id}`} />
                   </div>
 
-                
-                  <Link href={`/pets/${pet._id}`} className="flex-1">
-                    <button
-                      className="w-full h-14 rounded-2xl text-white font-bold flex items-center justify-center gap-3 hover:scale-[1.02] transition-all duration-300"
-                      style={{
-                        background: "linear-gradient(90deg,#4d7c0f,#65a30d)",
-                      }}
-                    >
-                      View Details
-                      <FaArrowRight />
-                    </button>
+                  <Link
+                    href={`/pets/${pet._id}`}
+                    className="flex-1 h-10 px-3 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition duration-300 hover:scale-[1.02] whitespace-nowrap"
+                    style={{
+                      background: "linear-gradient(90deg,#4A90A4,#A8E6CF)",
+                    }}
+                  >
+                    Adopt Now
+                    <FaArrowRight size={12} />
                   </Link>
                 </div>
               </div>
