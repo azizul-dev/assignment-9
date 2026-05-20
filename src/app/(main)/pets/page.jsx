@@ -13,6 +13,7 @@ import { MdVaccines } from "react-icons/md";
 import { GiHealthNormal } from "react-icons/gi";
 import EyeButton from "@/components/EyeButton";
 import AdoptionStatusButton from "@/components/AdoptionStatusButton";
+import { authClient } from "@/lib/auth-client";
 
 const AllPets = () => {
   const [pets, setPets] = useState([]);
@@ -34,13 +35,21 @@ const AllPets = () => {
         const userId = sessionData?.user?.id;
 
         if (userId) {
+          const { data: tokenData } = await authClient.token();
+
           const requestRes = await fetch(
             `http://localhost:8000/adopting/${userId}`,
+            {
+              headers: {
+                authorization: `Bearer ${tokenData?.token}`,
+              },
+            },
           );
 
           const requestData = await requestRes.json();
 
           setRequests(requestData);
+          console.log(requestData);
         }
       } catch (error) {
         console.log(error);

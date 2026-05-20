@@ -5,13 +5,17 @@ import { RiDeleteBin6Fill } from "react-icons/ri";
 import { FaTriangleExclamation } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { redirect } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 const DeleteCart = ({ pet }) => {
   const handleDelete = async () => {
+    const {data:tokenData} = await authClient.token()
+    
     const res = await fetch(`http://localhost:8000/pet/${pet._id}`, {
       method: "DELETE",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${tokenData?.token}`
       },
     });
     const data = await res.json();

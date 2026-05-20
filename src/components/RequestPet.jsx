@@ -1,4 +1,5 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
 import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 
@@ -9,9 +10,17 @@ const RequestPet = ({ petId, petName }) => {
 
   const fetchRequests = async () => {
     setLoading(true);
+    const { data: tokenData } = await authClient.token();
+
     try {
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/adopting/pet/${petId}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+        },
       );
 
       const data = await res.json();
@@ -30,11 +39,17 @@ const RequestPet = ({ petId, petName }) => {
 
   const handleStatus = async (requestId, status, petId) => {
     try {
+      const { data: tokenData } = await authClient.token();
+
       const res = await fetch(
         `${process.env.NEXT_PUBLIC_API_URL}/adopting/${requestId}/status`,
         {
           method: "PATCH",
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+            authorization: `Bearer ${tokenData?.token}`,
+          },
+
           body: JSON.stringify({ status, petId }),
         },
       );
@@ -47,7 +62,6 @@ const RequestPet = ({ petId, petName }) => {
     }
   };
 
-  // Close modal on Escape key
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") setIsOpen(false);
@@ -58,27 +72,23 @@ const RequestPet = ({ petId, petName }) => {
 
   return (
     <>
-      {/* Requests Button */}
       <button
         onClick={handleOpen}
-        className="flex-1 h-10 px-3 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition duration-300 hover:scale-[1.02] whitespace-nowrap"
+        className=" cursor-pointer flex-1 h-10 px-3 rounded-xl text-white text-sm font-bold flex items-center justify-center gap-2 transition duration-300 hover:scale-[1.02] whitespace-nowrap"
         style={{ background: "linear-gradient(90deg,#4A90A4,#A8E6CF)" }}
       >
         Requests
       </button>
 
-      {/* Modal Backdrop */}
       {isOpen && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
           onClick={() => setIsOpen(false)}
         >
-          {/* Modal Box */}
           <div
             className="bg-gray-900 text-white rounded-2xl w-full max-w-md mx-4 p-5 relative"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Header */}
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-bold">
                 Adoption Requests for {petName}
@@ -91,7 +101,6 @@ const RequestPet = ({ petId, petName }) => {
               </button>
             </div>
 
-            {/* Content */}
             {loading ? (
               <p className="text-center text-gray-400 py-6">Loading...</p>
             ) : requests.length === 0 ? (
@@ -103,13 +112,12 @@ const RequestPet = ({ petId, petName }) => {
                     key={req._id}
                     className="bg-gray-800 rounded-xl p-4 flex flex-col gap-3"
                   >
-                    {/* User Info Row */}
                     <div className="flex items-start justify-between gap-2">
                       <div>
                         <p className="font-semibold text-sm">{req.userName}</p>
                         <p className="text-gray-400 text-xs">{req.userEmail}</p>
                       </div>
-                      {/* Status Badge */}
+
                       <span
                         className={`text-xs font-semibold px-2 py-1 rounded-full shrink-0 ${
                           req.status === "approved"
@@ -127,7 +135,6 @@ const RequestPet = ({ petId, petName }) => {
                       </span>
                     </div>
 
-                    {/* Dates */}
                     <div className="flex gap-4 text-xs text-gray-400">
                       <span>
                         Pickup:{" "}
@@ -147,14 +154,10 @@ const RequestPet = ({ petId, petName }) => {
                       </span>
                     </div>
 
-                    {/* Message */}
                     {req.message && (
-                      <p className="text-sm text-gray-300 bg-gray-700/50 rounded-lg px-3 py-2 italic">
-                        {/* "{req.message}" */}
-                      </p>
+                      <p className="text-sm text-gray-300 bg-gray-700/50 rounded-lg px-3 py-2 italic"></p>
                     )}
 
-                    {/* Approve / Reject Buttons — hide if already decided */}
                     {req.status === "pending" && (
                       <div className="flex gap-3 mt-1">
                         <button

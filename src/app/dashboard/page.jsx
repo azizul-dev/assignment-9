@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CiCirclePlus } from "react-icons/ci";
+import { RiAddCircleLine, RiFileListLine, RiHeartLine } from "react-icons/ri";
 
 export default function DashboardPage() {
   return (
@@ -20,7 +21,7 @@ export default function DashboardPage() {
         >
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
-              <span className="text-white text-xl">{/* icon */}</span>
+              <span className="text-white text-xl"><RiHeartLine size={18} /></span>
 
               <h2 className="text-lg md:text-xl font-semibold text-white">
                 My Requests
@@ -44,10 +45,10 @@ export default function DashboardPage() {
         >
         <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
-              <span className="text-white text-xl">{/* icon */}</span>
+              <span className="text-white text-xl"><RiAddCircleLine size={18} /></span>
 
               <h2 className="text-lg md:text-xl font-semibold text-white">
-                My Listings
+               Add Pet
               </h2>
             </div>
 
@@ -68,7 +69,7 @@ export default function DashboardPage() {
         >
           <div className="text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start gap-2">
-              <span className="text-white text-xl">{/* icon */}</span>
+              <span className="text-white text-xl"><RiFileListLine size={18} /></span>
 
               <h2 className="text-lg md:text-xl font-semibold text-white">
                 My Listings

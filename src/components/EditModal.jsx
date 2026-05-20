@@ -1,5 +1,6 @@
 "use client";
 
+import { authClient } from "@/lib/auth-client";
 import { Envelope } from "@gravity-ui/icons";
 import {
   Button,
@@ -26,10 +27,13 @@ const EditModal = ({ pet }) => {
     const updatedPet = Object.fromEntries(formData.entries());
 
     console.log(updatedPet);
+    const { data: tokenData } = await authClient.token();
+
     const res = await fetch(`http://localhost:8000/pet/${pet._id}`, {
       method: "PATCH",
       headers: {
         "content-type": "application/json",
+         authorization: `Bearer ${tokenData?.token}`,
       },
       body: JSON.stringify(updatedPet),
     });
@@ -39,7 +43,6 @@ const EditModal = ({ pet }) => {
       toast.success("Pet updated successfully!");
       redirect("/dashboard/my-listings");
     }
-    
   };
 
   return (
@@ -201,7 +204,11 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                      <TextField name="age" defaultValue={String(pet?.age ?? "")} isRequired>
+                      <TextField
+                        name="age"
+                        defaultValue={String(pet?.age ?? "")}
+                        isRequired
+                      >
                         <Label className="text-sm font-medium text-white/70 mb-2 block">
                           Age (years)
                         </Label>
@@ -223,7 +230,6 @@ const EditModal = ({ pet }) => {
 
                         <FieldError className="text-red-300" />
                       </TextField>
-
 
                       <div>
                         <Select
@@ -419,7 +425,10 @@ const EditModal = ({ pet }) => {
                         <FieldError className="text-red-300" />
                       </TextField>
 
-                     <TextField name="adoptionFee" defaultValue={String(pet?.adoptionFee ?? "")}>
+                      <TextField
+                        name="adoptionFee"
+                        defaultValue={String(pet?.adoptionFee ?? "")}
+                      >
                         <Label className="text-sm font-medium text-white/70 mb-2 block">
                           Adoption Fee
                         </Label>
