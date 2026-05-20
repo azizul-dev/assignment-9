@@ -9,14 +9,20 @@ import {
 import { MdVaccines } from "react-icons/md";
 import { IoMaleFemale } from "react-icons/io5";
 import AdoptPet from "@/components/AdoptPet";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
 
 const PetDetailPage = async ({ params }) => {
   const { id }  = await params;
 
+  const {token} = await auth.api.getToken({
+    headers: await headers()
+  })
+
 
   const res = await fetch(`http://localhost:8000/pet/${id}`, {
     headers: {
-      authorization: "logged in"
+      authorization: `Bearer ${token}`
     }
   });
 
