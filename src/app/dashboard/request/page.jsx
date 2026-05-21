@@ -8,13 +8,13 @@ const RequestPage = () => {
   const [requests, setRequests] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // ✅ useCallback দিয়ে wrap — useEffect warning ঠিক হবে
+  
   const fetchRequests = useCallback(async () => {
     try {
       const { data: sessionData } = await authClient.getSession();
       const { data: tokenData } = await authClient.token();
 
-      // ✅ email দিয়ে fetch করো
+     
       const ownerEmail = sessionData?.user?.email;
       if (!ownerEmail) return;
 

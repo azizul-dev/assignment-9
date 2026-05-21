@@ -54,6 +54,16 @@ export default function DashboardLayout({ children }) {
       label: "Requested",
       icon: <RiFileListLine size={18} />,
     },
+    {
+      href: "/dashboard/edit",
+      label: "Edit",
+      icon: <RiFileListLine size={18} />,
+    },
+    {
+      href: "/dashboard/delete",
+      label: "Delete",
+      icon: <RiFileListLine size={18} />,
+    },
   ];
   return (
     <div
