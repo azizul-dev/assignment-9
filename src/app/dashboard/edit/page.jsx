@@ -53,9 +53,9 @@ const EditPage = () => {
   };
 
   return (
-    <div className="p-4 md:p-8 min-h-screen">
-      <div className="mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold text-white flex items-center gap-3">
+    <div className="p-3 sm:p-4 md:p-8 min-h-screen overflow-hidden">
+      <div className="mb-6 md:mb-8">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white flex items-center gap-3">
           <FaPaw className="text-cyan-400" />
           Edit Pets
         </h1>
@@ -65,7 +65,7 @@ const EditPage = () => {
         </p>
       </div>
 
-      <div className="grid gap-6">
+      <div className="grid gap-5 md:gap-6">
         {pets.map((pet) => (
           <form
             key={pet._id}
@@ -74,16 +74,17 @@ const EditPage = () => {
               bg-white/10
               backdrop-blur-lg
               border border-white/10
-              rounded-3xl
-              p-5 md:p-7
+              rounded-2xl md:rounded-3xl
+              p-4 sm:p-5 md:p-7
               shadow-xl
               hover:border-cyan-400/30
               transition-all
               duration-300
+              overflow-hidden
             "
           >
-            <div className="flex flex-col lg:flex-row gap-5">
-              <div className="w-full lg:w-56 h-52 rounded-2xl overflow-hidden flex-shrink-0">
+            <div className="flex flex-col xl:flex-row gap-5">
+              <div className="w-full xl:w-60 h-52 sm:h-64 xl:h-52 rounded-2xl overflow-hidden flex-shrink-0">
                 <Image
                   src={pet.imageUrl}
                   alt={pet.petName}
@@ -92,13 +93,14 @@ const EditPage = () => {
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+              <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4 min-w-0">
                 <Input
                   name="petName"
                   defaultValue={pet.petName}
                   placeholder="Pet Name"
                   variant="flat"
-                  className="bg-white/10 border border-white/20"
+                  className="w-full"
                 />
 
                 <Input
@@ -106,22 +108,18 @@ const EditPage = () => {
                   defaultValue={pet.breed}
                   placeholder="Breed"
                   variant="flat"
-                  classNames={{
-                    inputWrapper: "bg-white/80 backdrop-blur-md rounded-xl",
-                  }}
+                  className="w-full"
                 />
 
-                <div className="flex items-center bg-white/80 rounded-xl px-3">
-                  <FaMapMarkerAlt className="text-gray-500 mr-2" />
+                <div className="flex items-center bg-white/80 rounded-xl px-3 w-full overflow-hidden">
+                  <FaMapMarkerAlt className="text-gray-500 mr-2 shrink-0" />
 
                   <Input
                     name="location"
                     defaultValue={pet.location}
                     placeholder="Location"
                     variant="flat"
-                    classNames={{
-                      inputWrapper: "bg-transparent shadow-none",
-                    }}
+                    className="w-full min-w-0"
                   />
                 </div>
 
@@ -131,9 +129,7 @@ const EditPage = () => {
                   placeholder="Adoption Fee"
                   type="number"
                   variant="flat"
-                  classNames={{
-                    inputWrapper: "bg-white/80 backdrop-blur-md rounded-xl",
-                  }}
+                  className="w-full"
                 />
 
                 <div className="md:col-span-2">
@@ -142,9 +138,7 @@ const EditPage = () => {
                     defaultValue={pet.imageUrl}
                     placeholder="Image URL"
                     variant="flat"
-                    classNames={{
-                      inputWrapper: "bg-white/80 backdrop-blur-md rounded-xl",
-                    }}
+                    className="w-full"
                   />
                 </div>
 
@@ -153,17 +147,14 @@ const EditPage = () => {
                     name="description"
                     defaultValue={pet.description}
                     placeholder="Description"
-                    minRows={4}
                     variant="flat"
-                    classNames={{
-                      inputWrapper: "bg-white/80 backdrop-blur-md rounded-xl",
-                    }}
+                    className="w-full min-h-[120px]"
                   />
                 </div>
               </div>
             </div>
 
-            <div className="mt-6">
+            <div className="mt-5 md:mt-6">
               <Button
                 type="submit"
                 className="
@@ -173,8 +164,8 @@ const EditPage = () => {
                   text-white
                   font-semibold
                   rounded-xl
-                  h-12
-                  text-base
+                  h-11 md:h-12
+                  text-sm md:text-base
                 "
               >
                 Update Pet

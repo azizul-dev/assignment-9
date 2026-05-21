@@ -14,6 +14,9 @@ import {
 } from "react-icons/ri";
 import { authClient } from "@/lib/auth-client";
 import { SiHomebridge } from "react-icons/si";
+import { MdRequestQuote } from "react-icons/md";
+import { FaCreditCard } from "react-icons/fa";
+import { AiTwotoneDelete } from "react-icons/ai";
 
 const dancing = Dancing_Script({
   subsets: ["latin"],
@@ -52,17 +55,17 @@ export default function DashboardLayout({ children }) {
     {
       href: "/dashboard/request",
       label: "Requested",
-      icon: <RiFileListLine size={18} />,
+      icon: <MdRequestQuote size={18} />,
     },
     {
       href: "/dashboard/edit",
       label: "Edit",
-      icon: <RiFileListLine size={18} />,
+      icon: <FaCreditCard size={18} />,
     },
     {
       href: "/dashboard/delete",
       label: "Delete",
-      icon: <RiFileListLine size={18} />,
+      icon: <AiTwotoneDelete size={18} />,
     },
   ];
   return (
@@ -74,9 +77,7 @@ export default function DashboardLayout({ children }) {
         backgroundPosition: "center",
       }}
     >
-     
       <div className="md:hidden flex flex-col min-h-screen">
-      
         <div
           className="flex items-center gap-3 px-4 py-3 sticky top-0 z-50"
           style={{ background: "rgba(0,0,0,0.3)" }}
@@ -92,7 +93,6 @@ export default function DashboardLayout({ children }) {
           </span>
         </div>
 
-       
         {sidebarOpen && (
           <div
             className="fixed inset-0 z-30 bg-black/50"
@@ -100,7 +100,6 @@ export default function DashboardLayout({ children }) {
           />
         )}
 
-     
         <aside
           className="fixed left-0 top-0 z-40 h-screen w-64 p-6 flex flex-col gap-3 transition-transform duration-300"
           style={{
@@ -176,17 +175,14 @@ export default function DashboardLayout({ children }) {
               border: "1px solid rgba(239,68,68,0.3)",
             }}
           >
-             <RiLogoutBoxRLine className="text-lg" /> Logout
+            <RiLogoutBoxRLine className="text-lg" /> Logout
           </button>
         </aside>
 
-       
         <main className="flex-1 w-full">{children}</main>
       </div>
 
-     
       <div className="hidden md:flex min-h-screen">
-      
         <aside
           className="w-64 min-h-screen p-6 flex flex-col gap-3 sticky top-0 self-start"
           style={{
@@ -256,7 +252,6 @@ export default function DashboardLayout({ children }) {
           </button>
         </aside>
 
-       
         <main className="flex-1 w-full pt-4 px-4">{children}</main>
       </div>
     </div>
