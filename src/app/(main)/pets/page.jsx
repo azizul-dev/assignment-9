@@ -5,76 +5,76 @@ import Image from "next/image";
 
 import {
   FaMapMarkerAlt,
-
   FaHeart,
   FaSearch,
 } from "react-icons/fa";
+
 import { MdVaccines } from "react-icons/md";
 import { GiHealthNormal } from "react-icons/gi";
+
 import EyeButton from "@/components/EyeButton";
 import AdoptionStatusButton from "@/components/AdoptionStatusButton";
+
 import { authClient } from "@/lib/auth-client";
 
 const AllPets = () => {
   const [pets, setPets] = useState([]);
+
   const [requests, setRequests] = useState([]);
+
   const [search, setSearch] = useState("");
+
   const [category, setCategory] = useState("all");
 
-  useEffect(() => {
-    const fetchData = async () => {
-       const {data:tokenData} = await authClient.token()
-      try {
-        const petRes = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/pet`,{
+ 
+  const fetchPets = async () => {
+    try {
+      const { data: tokenData } = await authClient.token();
+
+      const petRes = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/pet?search=${search}&category=${category}`,
+        {
           headers: {
-             authorization: `Bearer ${tokenData?.token}`
-          }
-        });
-        const petData = await petRes.json();
-
-        setPets(petData);
-
-        const sessionRes = await fetch("/api/auth/get-session");
-        const sessionData = await sessionRes.json();
-
-        const userId = sessionData?.user?.id;
-
-        if (userId) {
-          const { data: tokenData } = await authClient.token();
-
-          const requestRes = await fetch(
-            `${process.env.NEXT_PUBLIC_API_URL}/adopting/${userId}`,
-            {
-              headers: {
-                authorization: `Bearer ${tokenData?.token}`,
-              },
-            },
-          );
-
-          const requestData = await requestRes.json();
-
-          setRequests(requestData);
-          console.log(requestData);
+            authorization: `Bearer ${tokenData?.token}`,
+          },
         }
-      } catch (error) {
-        console.log(error);
+      );
+
+      const petData = await petRes.json();
+
+      setPets(petData);
+
+     
+      const sessionRes = await fetch("/api/auth/get-session");
+
+      const sessionData = await sessionRes.json();
+
+      const userId = sessionData?.user?.id;
+
+      
+      if (userId) {
+        const requestRes = await fetch(
+          `${process.env.NEXT_PUBLIC_API_URL}/adopting/${userId}`,
+          {
+            headers: {
+              authorization: `Bearer ${tokenData?.token}`,
+            },
+          }
+        );
+
+        const requestData = await requestRes.json();
+
+        setRequests(requestData);
       }
-    };
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    fetchData();
-  }, []);
-
-  const filteredPets = pets.filter((pet) => {
-    const matchesSearch = pet.petName
-      .toLowerCase()
-      .includes(search.toLowerCase());
-
-    const matchesCategory =
-      category === "all" ||
-      pet.species.toLowerCase() === category.toLowerCase();
-
-    return matchesSearch && matchesCategory;
-  });
+  
+  useEffect(() => {
+    fetchPets();
+  }, [search, category]);
 
   return (
     <div
@@ -86,12 +86,15 @@ const AllPets = () => {
         backgroundAttachment: "fixed",
       }}
     >
+      
       <div className="fixed inset-0 bg-black/65 -z-10"></div>
 
+     
       <div className="absolute top-0 left-0 w-72 h-72 bg-cyan-400/10 blur-3xl rounded-full"></div>
 
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-emerald-400/10 blur-3xl rounded-full"></div>
 
+      
       <div className="text-center mb-12">
         <p className="uppercase tracking-[6px] text-[#A8E6CF] text-xs mb-3">
           Pet Adoption Platform
@@ -106,7 +109,9 @@ const AllPets = () => {
         </p>
       </div>
 
+      
       <div className="max-w-7xl mx-auto mb-10 flex flex-col md:flex-row gap-4 items-center justify-between">
+       
         <div
           className="w-full md:w-[400px] h-14 rounded-2xl flex items-center px-4"
           style={{
@@ -126,6 +131,7 @@ const AllPets = () => {
           />
         </div>
 
+       
         <select
           value={category}
           onChange={(e) => setCategory(e.target.value)}
@@ -158,9 +164,12 @@ const AllPets = () => {
         </select>
       </div>
 
+    
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto">
-        {filteredPets.map((pet) => {
-          const request = requests.find((item) => item.petId === pet._id);
+        {pets.map((pet) => {
+          const request = requests.find(
+            (item) => item.petId === pet._id
+          );
 
           return (
             <div
@@ -173,6 +182,7 @@ const AllPets = () => {
                 boxShadow: "0 10px 35px rgba(0,0,0,0.22)",
               }}
             >
+             
               <div className="relative h-[400px] overflow-hidden">
                 <Image
                   src={pet.imageUrl}
@@ -184,6 +194,7 @@ const AllPets = () => {
 
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
 
+               
                 <div
                   className="absolute top-3 left-3 px-3 py-1 rounded-full text-white text-[11px] font-bold"
                   style={{
@@ -194,6 +205,7 @@ const AllPets = () => {
                   {pet.species}
                 </div>
 
+               
                 <div
                   className="absolute top-3 right-3 px-3 py-1 rounded-full text-white text-[11px] font-bold"
                   style={{
@@ -206,6 +218,7 @@ const AllPets = () => {
                   {pet.gender}
                 </div>
 
+              
                 <button
                   className="absolute bottom-3 right-3 w-9 h-9 rounded-full flex items-center justify-center text-white transition hover:scale-110"
                   style={{
@@ -216,6 +229,7 @@ const AllPets = () => {
                   <FaHeart size={14} />
                 </button>
 
+               
                 <div className="absolute bottom-4 left-4">
                   <h2 className="text-2xl font-black text-white mb-1">
                     {pet.petName}
@@ -227,7 +241,9 @@ const AllPets = () => {
                 </div>
               </div>
 
+             
               <div className="p-4">
+               
                 <div className="flex items-center justify-between mb-4">
                   <div>
                     <p className="text-white/50 text-[11px] mb-1">
@@ -239,18 +255,30 @@ const AllPets = () => {
                     </h3>
                   </div>
 
+               
                   <div
                     className="px-3 py-1.5 rounded-full text-xs font-semibold text-white"
                     style={{
-                      background: "rgba(34,197,94,0.2)",
-                      border: "1px solid rgba(34,197,94,0.3)",
+                      background:
+                        pet.status === "adopted"
+                          ? "rgba(239,68,68,0.2)"
+                          : "rgba(34,197,94,0.2)",
+
+                      border:
+                        pet.status === "adopted"
+                          ? "1px solid rgba(239,68,68,0.3)"
+                          : "1px solid rgba(34,197,94,0.3)",
                     }}
                   >
-                    Available
+                    {pet.status === "adopted"
+                      ? "Adopted"
+                      : "Available"}
                   </div>
                 </div>
 
+                
                 <div className="grid grid-cols-2 gap-3 mb-4">
+                
                   <div
                     className="rounded-2xl p-3"
                     style={{
@@ -268,6 +296,7 @@ const AllPets = () => {
                     </p>
                   </div>
 
+                 
                   <div
                     className="rounded-2xl p-3"
                     style={{
@@ -285,6 +314,7 @@ const AllPets = () => {
                     </p>
                   </div>
 
+               
                   <div
                     className="rounded-2xl p-3 col-span-2"
                     style={{
@@ -303,12 +333,18 @@ const AllPets = () => {
                   </div>
                 </div>
 
+                
                 <p className="text-white/60 text-xs leading-6 mb-4 line-clamp-2 min-h-[48px]">
                   {pet.description}
                 </p>
 
+                
                 <div className="flex items-center gap-2">
-                  <AdoptionStatusButton request={request} petId={pet._id} />
+                  <AdoptionStatusButton
+                    request={request}
+                    petId={pet._id}
+                    petStatus={pet.status}
+                  />
 
                   <div
                     className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center shrink-0"
@@ -326,9 +362,12 @@ const AllPets = () => {
         })}
       </div>
 
-      {filteredPets.length === 0 && (
+      
+      {pets.length === 0 && (
         <div className="text-center mt-20">
-          <h2 className="text-3xl font-black text-white mb-3">No Pets Found</h2>
+          <h2 className="text-3xl font-black text-white mb-3">
+            No Pets Found
+          </h2>
 
           <p className="text-white/60">
             Try searching with another name or category.
